@@ -1,0 +1,12 @@
+<div class="row px-3 py-2">
+    <div *ngFor="let post of userBlogData" class="col-sm-4">
+        <div class="card border-0 mb-3">
+            <div class="card-body p-0">
+                <img src="../../assets/kit.jpeg" class="card-img-top mb-3" alt="cat with logo">
+                <p class="text-primary text-uppercase font-monospace fs-8"> {{ post.author }}</p>
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.text }}</p>
+            </div>
+        </div>
+    </div>
+</div>

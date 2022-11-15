@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-2 p-3">
+        <button type="button" class="btn btn-dark w-100 text-start">Blogs</button>
+    </div>
+    <div class="col-10 p-3">
+        <div class="border-bottom border-light">
+            <div class="mb-3">
+                <input 
+                    type="text" class="form-control" placeholder="title here..." 
+                    [(ngModel)]="title">
+            </div>
+            <div class="mb-3">
+                <textarea 
+                    class="form-control" rows="3" placeholder="text here..."
+                    [(ngModel)]="text">
+                </textarea>
+            </div>
+            <div class="mb-3">
+                <input 
+                    type="text" class="form-control" placeholder="author here..."
+                    [(ngModel)]="author">
+            </div>
+            <div class="mb-3">
+                <button 
+                *ngIf="!editStatus"    
+                (click)="addPost()"
+                [disabled]="!title || !text || !author" 
+                type="button" class="btn btn-dark" 
+                >Add
+            </button>
+            <button 
+                *ngIf="editStatus"    
+                (click)="saveEdit()"
+                type="button" class="btn btn-outline-dark" 
+                >Save Edit
+            </button>  
+            </div>
+        </div>
+        
+        <table class="table mt-3">
+            <thead>
+                <tr class="border-top border-bottom">
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Text</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let post of blogData; index as i">
+                    <td>{{ i+1 }}</td>
+                    <td> {{ post.title }}</td>
+                    <td> 
+                        {{ post.text | slice:0:11}}
+                        <span *ngIf="post.text.length > 11">...</span> 
+                    </td>
+                    <td>{{ post.author }}</td>
+                    <td>
+                        <button (click)="editPost(post)" type="button" class="btn btn-dark">Edit</button>                      
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-dark" (click)="deletePost(post)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
